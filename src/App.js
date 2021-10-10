@@ -8,11 +8,11 @@ export const ColorContext = React.createContext();
 function App() {
     return (
         <div className="App">
-            <NameContext.Provider value={'Smith'}>
-                <ColorContext.Provider value={'red'}>
-                    <ComponentA/>
-                </ColorContext.Provider>
-            </NameContext.Provider>
+            {/*<NameContext.Provider value={'Smith'}>*/}
+            {/*    <ColorContext.Provider value={'red'}>*/}
+            {/*        <ComponentA/>*/}
+            {/*    </ColorContext.Provider>*/}
+            {/*</NameContext.Provider>*/}
 
             <Counter />
         </div>
