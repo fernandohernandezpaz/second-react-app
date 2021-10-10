@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ComponentA from './Components/ComponentA';
+// import ComponentA from './Components/ComponentA';
 import Counter from './Components/Counter';
 export const NameContext = React.createContext();
 export const ColorContext = React.createContext();

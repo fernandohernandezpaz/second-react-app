@@ -3,19 +3,14 @@ import {Button, ButtonGroup, Badge} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const initialState = {
-    counter1: 0,
-    counter2: 10
+    counter: 0
 };
 const reducer = (state, action) => {
     switch (action.type) {
         case 'increment':
-            return {...state, counter1: state.counter1 + action.payload};
+            return {...state, counter: state.counter + action.payload};
         case 'decrement':
-            return {...state, counter1: state.counter1 - action.payload};
-        case 'increment2':
-            return {...state, counter2: state.counter2 + 1};
-        case 'decrement2':
-            return {...state, counter2: state.counter2 - 1};
+            return {...state, counter: state.counter - action.payload};
         case 'reset':
             return initialState;
         default:
@@ -24,33 +19,38 @@ const reducer = (state, action) => {
 }
 
 const Counter = () => {
-    const [count, dispatch] = useReducer(reducer, initialState);
+    const [count1, dispatch1] = useReducer(reducer, initialState);
+    const [count2, dispatch2] = useReducer(reducer, initialState);
     return (
         <>
             <ButtonGroup>
                 <Button color="primary">
-                    Counter1 <Badge color="secondary">{count.counter1}</Badge>
+                    Counter1 <Badge color="secondary">{count1.counter}</Badge>
                 </Button>
                 <Button color="primary">
-                    Counter2 <Badge color="secondary">{count.counter2}</Badge>
+                    Counter2 <Badge color="secondary">{count2.counter}</Badge>
                 </Button>
             </ButtonGroup>
-            <ButtonGroup className={'d-block mt-1'}>
-                <Button color="primary" onClick={() => dispatch({type: 'increment', payload: 1})}>Increment</Button>
-                <Button color="danger" onClick={() => dispatch({type: 'decrement', payload: 1})}>Decrement</Button>
-            </ButtonGroup>
 
             <ButtonGroup className={'d-block mt-1'}>
-                <Button color="primary" onClick={() => dispatch({type: 'increment', payload: 5})}>Increment 5</Button>
-                <Button color="danger" onClick={() => dispatch({type: 'decrement', payload: 5})}>Decrement 5</Button>
+                <Button color="primary" onClick={() => dispatch1({type: 'increment', payload: 1})}>Increment counter1</Button>
+                <Button color="danger" onClick={() => dispatch1({type: 'decrement', payload: 1})}>Decrement counter1</Button>
             </ButtonGroup>
 
+
             <ButtonGroup className={'d-block mt-1'}>
-                <Button color="primary" onClick={() => dispatch({type: 'increment2'})}>Increment counter2</Button>
-                <Button color="danger" onClick={() => dispatch({type: 'decrement2'})}>Decrement counter2</Button>
+                <Button color="primary" onClick={() => dispatch2({type: 'increment', payload: 1})}>Increment
+                    counter2</Button>
+                <Button color="danger" onClick={() => dispatch2({type: 'decrement', payload: 1})}>Decrement
+                    counter2</Button>
             </ButtonGroup>
             <br/>
-            <Button color="danger" onClick={() => dispatch({type: 'reset'})}>Reset</Button>
+            <ButtonGroup className={'d-block mt-1'}>
+            <Button color="danger"
+                    onClick={() => dispatch1({type: 'reset'})}>Reset counter 1</Button>
+            <Button color="danger"
+                    onClick={() => dispatch2({type: 'reset'})}>Reset counter 2</Button>
+            </ButtonGroup>
         </>
     )
 };
